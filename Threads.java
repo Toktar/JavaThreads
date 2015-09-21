@@ -1,12 +1,16 @@
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Alenor on 20.09.2015.
  */
 public class Threads {
     private static final String DIRECTORY = "E:\\threadtest";
+    private static final String OUTPUT = "E:\\threadtest\\out.dat";
 
     public static void main(String[] args) {
         int position = 1;
@@ -29,6 +33,13 @@ public class Threads {
                 }
             }
         }
-        System.out.println("Result : " + resultHolder.getResult());
+        try {
+            FileWriter fileWriter = new FileWriter(OUTPUT, false);
+            fileWriter.write(String.valueOf(resultHolder.getResult()));
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
